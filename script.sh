@@ -8,6 +8,8 @@ TEMPLATE_FILE="template.json"
 PARAMETERS_FILE="parametersFile.json"
 
 # Register Resource Provider
+provider_list=("Microsoft.Compute" "Microsoft.Storage" "Microsoft.Network")
+
 for provider in "${provider_list[@]}"; do
     echo "Registering provider: $provider"
     az provider register --namespace "$provider"
