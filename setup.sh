@@ -17,33 +17,39 @@ echo "-------------------------------------------10"
 sleep 10
 cdir=$(pwd)
 echo "export PATH=\$PATH:$cdir/kafka/bin" >> ~/.bashrc
+
+sleep 2
 source ~/.bashrc
 
 # Configure Kafka's advertised listeners using the public IP
-echo "-------------------------------------------02"
+echo "-------------------------------------------"
+echo "Update Kafka IP Binding"
 sleep 2
 mip=$(curl ifconfig.me)
 echo "advertised.listeners=PLAINTEXT://$mip:9092" >> kafka/config/server.properties
 
-echo "-------------------------------------------01"
-sleep 1
+echo "-------------------------------------------"
+sleep 2
 echo "Currect IP: $mip"
 echo "advertised.listeners=PLAINTEXT://$mip:9092"
 
 
 # Install MySQL server
-echo "-------------------------------------------01"
-sleep 1
+echo "-------------------------------------------"
+sleep 2
 sudo apt install mysql-server -y
 
 # Configure MySQL to allow connections from any IP
-echo "-------------------------------------------10"
-sleep 10
+echo "-------------------------------------------2"
+echo "Update MySQL IP Binding"
+sleep 2
 sudo sed -i 's/^bind-address.*/bind-address = 0.0.0.0/' /etc/mysql/mysql.conf.d/mysqld.cnf
+
+sleep 2
 sudo systemctl restart mysql
 
 # MySQL configuration
-echo "-------------------------------------------10"
+
 sleep 10
 echo "------------------------------------------"
 echo "|          Configure MySQL               |"
