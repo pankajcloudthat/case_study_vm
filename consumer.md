@@ -1,10 +1,13 @@
 # Consumer
 
 ### install packages for python kafka and MySQL
+<pre>
 pip install kafka-python
 pip install mysql-connector-python
+</pre>
 
 ### Import library and packages
+<pre>
 from kafka import KafkaConsumer
 from time import sleep
 from json import dumps,loads
@@ -12,16 +15,20 @@ import json
 import mysql.connector
 from mysql.connector import Error
 from datetime import datetime
+</pre>
 
 ### create Kafka Consumer Object
+<pre>
 consumer = KafkaConsumer(
     'demo',
     bootstrap_servers=['your-ip-address:9092'], #add your IP here
     auto_offset_reset='latest',  # Start from the earliest message
     enable_auto_commit=True,
     value_deserializer=lambda x: loads(x.decode('utf-8')))
+</pre>
 
 ### Create MySQL Connection Object
+<pre>
 try:
   conn = mysql.connector.connect(
       host='your-ip-address',    # Remote MySQL server address
@@ -32,8 +39,10 @@ try:
   )
 except Error as e:
   print(f"Error connecting to MySQL: {e}")
+</pre>
 
 ### Start Consumer
+<pre>
 while True:
   sleep(10)
   msg = consumer.poll(timeout_ms=10000)
@@ -70,3 +79,4 @@ while True:
     cursor.close()
   else:
     print("No message from producer")
+</pre>
