@@ -44,6 +44,14 @@ az deployment group create \
 if [ $? -eq 0 ]; then
     echo "Deployment succeeded."
     echo "Running Setup Script ..."
+
+    az vm extension set \
+    --resource-group $RESOURCE_GROUP_NAME \
+    --vm-name csvm \
+    --name CustomScript \
+    --publisher Microsoft.Azure.Extensions \
+    --settings '{"fileUris": ["https://raw.githubusercontent.com/pankajcloudthat/case_study_vm/refs/heads/setupvm/setup2.sh"], "commandToExecute": "./setup2.sh"}'
+    
 else
     echo "Deployment failed."
 fi
