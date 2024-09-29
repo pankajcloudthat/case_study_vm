@@ -30,6 +30,7 @@ echo "advertised.listeners=PLAINTEXT://$mip:9092" >> kafka/config/server.propert
 
 # Install MySQL server
 echo "-------------------------------------------"
+echo "Installing MySQL Server"
 sleep 2
 sudo apt install mysql-server -y
 
@@ -39,17 +40,29 @@ echo "Update MySQL IP Binding"
 sleep 2
 sudo sed -i 's/^bind-address.*/bind-address = 0.0.0.0/' /etc/mysql/mysql.conf.d/mysqld.cnf
 
+echo "-------------------------------------------"
+echo "Restarting MySQL Server"
 sleep 2
 sudo systemctl restart mysql
 
 # MySQL configuration
-
 echo "------------------------------------------"
-echo "|          Configure MySQL               |"
-echo "------------------------------------------"
-sleep 10
+echo "Creating Database nad user ..."
+sleep 2
 
 sudo mysql -e "CREATE DATABASE IF NOT EXISTS stockdb;
 CREATE USER IF NOT EXISTS 'stock'@'%' IDENTIFIED BY 'stock';
 GRANT ALL PRIVILEGES ON stockdb.* TO 'stock'@'%';
 FLUSH PRIVILEGES;"
+
+echo ""
+echo ""
+echo "------------------------------------------"
+echo "Creating Database nad user ..."
+echo "Database Name: stockdb"
+echo "username: stock"
+echo "password: stock"
+
+echo ""
+echo ""
+echo "Setup Complete!"
