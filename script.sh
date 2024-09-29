@@ -33,7 +33,7 @@ fi
 
 
 # Deploy the UbuntuVM ARM template
-echo "Start creating Virtual Machine in Resource group $RESOURCE_GROUP_NAME ..."
+echo "Creating Virtual Machine ..."
 
 az deployment group create \
   --resource-group $RESOURCE_GROUP_NAME \
