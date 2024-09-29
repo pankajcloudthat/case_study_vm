@@ -51,5 +51,5 @@ sleep 10
 
 sudo mysql -e "CREATE DATABASE IF NOT EXISTS stockdb;
 CREATE USER IF NOT EXISTS 'stock'@'%' IDENTIFIED BY 'stock';
-GRANT ALL PRIVILEGES ON stock.* TO 'stock'@'%';
+GRANT ALL PRIVILEGES ON stockdb.* TO 'stock'@'%';
 FLUSH PRIVILEGES;"
