@@ -12,14 +12,14 @@ for provider in "${provider_list[@]}"; do
     az provider register --namespace "$provider"
 	
 	status=$(az provider show --namespace "$provider" --query "registrationState" -o tsv)
-	while [ "$status" != "Registered" ]; then
+	while [ "$status" != "Registered" ]; do
 		status=$(az provider show --namespace "$provider" --query "registrationState" -o tsv)
 	done
 done
 echo "All providers are registered."
 
 # Check if Resource Group exists
-if [ "$(az group exists --name $RESOURCE_GROUP_NAME)" = "false" ]; do
+if [ "$(az group exists --name $RESOURCE_GROUP_NAME)" = "false" ]; then
     # Create Resource Group
     az group create --name $RESOURCE_GROUP_NAME --location $LOCATION
     sleep 3
