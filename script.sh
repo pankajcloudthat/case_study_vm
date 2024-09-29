@@ -19,7 +19,7 @@ done
 echo "All providers are registered."
 
 # Check if Resource Group exists
-if [ "$(az group exists --name $RESOURCE_GROUP_NAME)" = "false" ]; then
+if [ "$(az group exists --name $RESOURCE_GROUP_NAME)" = "false" ]; do
     # Create Resource Group
     az group create --name $RESOURCE_GROUP_NAME --location $LOCATION
     sleep 3
