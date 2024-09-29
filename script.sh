@@ -50,7 +50,7 @@ if [ $? -eq 0 ]; then
     --vm-name csvm \
     --name CustomScript \
     --publisher Microsoft.Azure.Extensions \
-    --settings '{"fileUris": ["https://raw.githubusercontent.com/pankajcloudthat/case_study_vm/refs/heads/setupvm/setup.sh"], "commandToExecute": "./setup.sh"}'
+    --settings '{"fileUris": ["https://raw.githubusercontent.com/pankajcloudthat/case_study_vm/refs/heads/setupvm/setup2.sh"], "commandToExecute": "./setup.sh"}'
 else
     echo "Deployment failed."
 fi
