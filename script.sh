@@ -33,6 +33,8 @@ fi
 
 
 # Deploy the UbuntuVM ARM template
+echo "Start creating Virtual Machine in Resource group $RESOURCE_GROUP_NAME ..."
+
 az deployment group create \
   --resource-group $RESOURCE_GROUP_NAME \
   --template-file $TEMPLATE_FILE \
@@ -44,3 +46,10 @@ if [ $? -eq 0 ]; then
 else
     echo "Deployment failed."
 fi
+
+az vm extension set \
+  --resource-group $RESOURCE_GROUP_NAME \
+  --vm-name csvm \
+  --name CustomScript \
+  --publisher Microsoft.Azure.Extensions \
+  --settings '{"fileUris": ["https://raw.githubusercontent.com/pankajcloudthat/case_study_vm/refs/heads/setupvm/setup.sh"], "commandToExecute": "./setup.sh"}'
