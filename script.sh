@@ -41,3 +41,5 @@ if [ $? -eq 0 ]; then
 else
     echo "Deployment failed."
 fi
+
+git clone https://github.com/pankajcloudthat/case_study_vm.git
