@@ -1,7 +1,8 @@
 #!/bin/bash
 
 # Variables
-RESOURCE_GROUP_NAME="CaseStudyVM"
+suffix=$(cat /proc/sys/kernel/random/uuid | cut -d'-' -f1)
+RESOURCE_GROUP_NAME="cavm-rg-$suffix"
 LOCATION="centralindia"
 TEMPLATE_FILE="template.json"
 PARAMETERS_FILE="parametersFile.json"
