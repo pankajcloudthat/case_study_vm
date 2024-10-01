@@ -51,28 +51,29 @@ while True:
       print("\n\nBatch count: ", len(messages_list), "\n\n")
 
     cursor = conn.cursor()
+   
     # Insert statement
+    # Form your insert statement test it locally, replace the col1, col2, col3,... name and their coreesponting value with %s, %s, %s, ...
     insert_query = """
-    INSERT INTO StockData (IndexName, Date, Open, High, Low, Close, AdjClose, Volume, CloseUSD)
-    VALUES (%s, %s, %s, %s, %s, %s, %s, %s, %s);
+    INSERT INTO StockData (col1, col2, col3, ...)
+    VALUES (%s, %s, %s, ...);
     """
+   
     for message in messages_list:
-      print(f"Consumed: {message.value}")
+      
+      # message.value return a python dict object
+      data = message.value
+      print(f"Consumed: {data}")
 
-      json_object = message.value
-
-      json_object['Date'] = datetime.strptime(json_object['Date'], '%Y-%b-%d').strftime('%Y-%m-%d')
+      # Write your logic here to transform the data
 
       cursor.execute(insert_query, (
-          json_object['Index'],
-          json_object['Date'],
-          json_object['Open'],
-          json_object['High'],
-          json_object['Low'],
-          json_object['Close'],
-          json_object['Adj Close'],  # Use underscore for the column name
-          json_object['Volume'],
-          json_object['CloseUSD']
+          data['col1'],
+          data['col2'],
+          data['col3'],
+          .
+          .
+          .
       ))
 
     conn.commit()
